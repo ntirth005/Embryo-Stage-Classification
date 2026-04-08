@@ -98,7 +98,17 @@ Annotations: https://zenodo.org/records/6390798/files/embryo_dataset_annotations
 | InceptionV3 | **0.2652** | **0.8708** |
 
 > ⚠️ These results are based on initial training (4 epochs).  
-> Further training and optimization are expected to improve performance.
+
+## 📊 Test Results (9 Epochs)
+
+| Model | Loss | Accuracy |
+|------|------|---------|
+| MobileNetV2 | 0.2874 | 0.8171 |
+| VGG16 | 0.2614 | **0.8895** |
+| VGG19 | 0.2611 | 0.8872 |
+| InceptionV3 | 0.4475 | 0.5454 |
+
+> ⚠️ Results after 9 epochs of training. Further improvements may be achieved through hyperparameter tuning and training stabilization.
 ---
 
 ## 🔍 Key Findings
