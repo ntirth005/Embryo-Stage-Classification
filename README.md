@@ -88,8 +88,7 @@ Annotations: https://zenodo.org/records/6390798/files/embryo_dataset_annotations
 - Loss (SoftOrdinalMarginLoss)  
 
 ---
-
-## 📊 Test Results
+## 📊 Test Results (Initial — 4 Epochs)
 
 | Model | Loss | Accuracy |
 |------|------|---------|
@@ -98,6 +97,8 @@ Annotations: https://zenodo.org/records/6390798/files/embryo_dataset_annotations
 | VGG19 | 0.2722 | 0.8515 |
 | InceptionV3 | **0.2652** | **0.8708** |
 
+> ⚠️ These results are based on initial training (4 epochs).  
+> Further training and optimization are expected to improve performance.
 ---
 
 ## 🔍 Key Findings
