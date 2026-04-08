@@ -6,8 +6,19 @@ This project explores multi-backbone CNN architectures combined with a custom-de
 
 ---
 
+## 📁 Notebook Versions
+
+- **`*.ipynb` (v1)**  
+  Initial implementation with frame-wise data splitting and training for 4 epochs  
+
+- **`*_v2.ipynb`**  
+  Extended training (9 epochs) with improved performance using the same frame-wise split  
+
+- **`*_v3.ipynb`**  
+  Updated pipeline with **patient-wise data splitting** to eliminate data leakage and ensure realistic evaluation
 ## 📂 Project: Embryo Development Stage Classification
 
+---
 ### Objective
 
 Classify human embryo images into **16 ordered developmental stages** using deep learning, while incorporating **ordinal relationships between stages** through a custom loss function.
@@ -68,7 +79,7 @@ A novel loss function designed to incorporate **ordinal relationships between cl
 Human Embryo Dataset (from Zenodo)
 
 - Kaggle Version:  
-https://www.kaggle.com/datasets/naumisharanyatirth/human-embryo-dataset  
+https://www.kaggle.com/datasets/naumisharanyatirth/human-embryo-dataset (created from Zenodo)
 
 - Original Source:  
 Images: https://zenodo.org/records/6390798/files/embryo_dataset.tar.gz  
@@ -81,6 +92,13 @@ Annotations: https://zenodo.org/records/6390798/files/embryo_dataset_annotations
 - Labels mapped using RUN frame indices  
 
 ---
+## 🔬 Data Splitting Strategy
+
+- Implemented **patient-wise splitting** to prevent data leakage  
+- Ensured that all frames from a single embryo sequence belong to only one split (train/validation/test)  
+- This avoids overlap of highly similar frames across splits and provides a more realistic evaluation of model performance
+  
+---
 
 ## 🧪 Evaluation Metrics
 
@@ -89,6 +107,8 @@ Annotations: https://zenodo.org/records/6390798/files/embryo_dataset_annotations
 
 ---
 ## 📊 Test Results (Initial — 4 Epochs)
+
+*Reference: `*.ipynb` (v1)*
 
 | Model | Loss | Accuracy |
 |------|------|---------|
@@ -99,7 +119,11 @@ Annotations: https://zenodo.org/records/6390798/files/embryo_dataset_annotations
 
 > ⚠️ These results are based on initial training (4 epochs).  
 
+---
+
 ## 📊 Test Results (9 Epochs)
+
+*Reference: `*_v2.ipynb`*
 
 | Model | Loss | Accuracy |
 |------|------|---------|
@@ -111,12 +135,23 @@ Annotations: https://zenodo.org/records/6390798/files/embryo_dataset_annotations
 > ⚠️ Results after 9 epochs of training. Further improvements may be achieved through hyperparameter tuning and training stabilization.
 ---
 
+## ⚠️ Experimental Note
+
+Earlier versions (v1, v2) used frame-wise splitting, which can lead to optimistic performance due to similarity between frames from the same embryo.
+
+Version v3 resolves this by enforcing **patient-wise splitting**, resulting in a more reliable and generalizable evaluation.
+
+---
 ## 🔍 Key Findings
 
 - Incorporating **ordinal relationships** significantly improves classification performance  
-- **InceptionV3 + SoftOrdinalMarginLoss** achieved the best results  
-- Reduced misclassification between distant biological stages  
-- Deeper architectures outperform lightweight models on this dataset  
+- **VGG16 + SoftOrdinalMarginLoss** achieved the best results after extended training (9 epochs)  
+- InceptionV3 showed strong initial performance but **degraded with extended training**, suggesting sensitivity to optimization dynamics and training stability
+- Reduced misclassification between distant biological stages due to ordinal-aware loss  
+- Deeper architectures (VGG variants) demonstrated better stability and generalization under the current training setup  
+
+- Corrected data leakage by transitioning from frame-wise to **patient-wise splitting**  
+- Observed that realistic evaluation requires sequence-level separation in temporal medical datasets  
 
 ---
 
