@@ -133,6 +133,19 @@ Annotations: https://zenodo.org/records/6390798/files/embryo_dataset_annotations
 | InceptionV3 | 0.4475 | 0.5454 |
 
 > ⚠️ Results after 9 epochs of training. Further improvements may be achieved through hyperparameter tuning and training stabilization.
+
+## 📊 Test Results (v3 — Patient-wise Split)
+
+*Reference: `*_v3.ipynb`*
+
+| Model | Loss | Accuracy |
+|------|------|---------|
+| MobileNetV2 | 0.3551 | 0.6066 |
+| VGG16 | 0.3385 | **0.6087** |
+| VGG19 | — | — |
+| InceptionV3 | 0.4711 | 0.4310 |
+
+> ⚠️ Results using **patient-wise data splitting**, eliminating data leakage and providing a more realistic evaluation compared to earlier versions.
 ---
 
 ## ⚠️ Experimental Note
