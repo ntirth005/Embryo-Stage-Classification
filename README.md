@@ -4,6 +4,12 @@ Study on ordinal-aware deep learning for classifying human embryo development st
 
 This project explores multi-backbone CNN architectures combined with a custom-designed loss function to improve performance on ordered (ordinal) biological stages.
 
+
+---
+### Objective
+
+Classify human embryo images into **16 ordered developmental stages** using deep learning, while incorporating **ordinal relationships between stages** through a custom loss function.
+
 ---
 
 ## 📁 Notebook Versions
@@ -17,11 +23,6 @@ This project explores multi-backbone CNN architectures combined with a custom-de
 - **`*_v3.ipynb`**  
   Updated pipeline with **patient-wise data splitting** to eliminate data leakage and ensure realistic evaluation
 ## 📂 Project: Embryo Development Stage Classification
-
----
-### Objective
-
-Classify human embryo images into **16 ordered developmental stages** using deep learning, while incorporating **ordinal relationships between stages** through a custom loss function.
 
 ---
 
@@ -141,8 +142,8 @@ Annotations: https://zenodo.org/records/6390798/files/embryo_dataset_annotations
 | Model | Loss | Accuracy |
 |------|------|---------|
 | MobileNetV2 | 0.3551 | 0.6066 |
-| VGG16 | 0.3385 | **0.6087** |
-| VGG19 | — | — |
+| VGG16 | 0.3385 | 0.6087 |
+| VGG19 | **0.3303** | **0.6230** |
 | InceptionV3 | 0.4711 | 0.4310 |
 
 > ⚠️ Results using **patient-wise data splitting**, eliminating data leakage and providing a more realistic evaluation compared to earlier versions.
@@ -157,14 +158,12 @@ Version v3 resolves this by enforcing **patient-wise splitting**, resulting in a
 ---
 ## 🔍 Key Findings
 
-- Incorporating **ordinal relationships** significantly improves classification performance  
-- **VGG16 + SoftOrdinalMarginLoss** achieved the best results after extended training (9 epochs)  
-- InceptionV3 showed strong initial performance but **degraded with extended training**, suggesting sensitivity to optimization dynamics and training stability
-- Reduced misclassification between distant biological stages due to ordinal-aware loss  
-- Deeper architectures (VGG variants) demonstrated better stability and generalization under the current training setup  
-
-- Corrected data leakage by transitioning from frame-wise to **patient-wise splitting**  
-- Observed that realistic evaluation requires sequence-level separation in temporal medical datasets  
+- Incorporating **ordinal relationships** via SoftOrdinalMarginLoss improves classification by reducing large-stage misclassification errors  
+- **VGG-based architectures (VGG16/VGG19)** demonstrated the most stable performance across training setups  
+- InceptionV3 showed strong initial results but **degraded with extended training and under patient-wise evaluation**, indicating sensitivity to training stability  
+- Transitioning from frame-wise to **patient-wise data splitting significantly reduced performance**, revealing the impact of data leakage in earlier experiments  
+- Patient-wise splitting provides a **more realistic evaluation of model generalization** for temporal medical datasets  
+- Lightweight models (MobileNetV2) achieved reasonable performance but were outperformed by deeper architectures  
 
 ---
 
@@ -203,8 +202,11 @@ This project demonstrates that **ordinal-aware learning** is crucial for tasks i
 
 By combining:
 - pretrained CNN architectures  
-- a custom loss function  
+- a custom loss function (SoftOrdinalMarginLoss)  
 - optimized training strategies  
 
-we achieve strong performance on a complex medical imaging classification problem.
+the models are able to capture meaningful stage transitions and reduce biologically inconsistent predictions.
 
+Furthermore, transitioning from frame-wise to **patient-wise data splitting** highlights the importance of **leakage-free evaluation**, providing a more realistic assessment of model generalization.
+
+Overall, this work emphasizes that both **loss design** and **data splitting strategy** play a critical role in building reliable deep learning systems for medical imaging tasks.
