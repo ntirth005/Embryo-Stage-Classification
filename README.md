@@ -135,7 +135,8 @@ Annotations: https://zenodo.org/records/6390798/files/embryo_dataset_annotations
 
 > ⚠️ Results after 9 epochs of training. Further improvements may be achieved through hyperparameter tuning and training stabilization.
 
-## 📊 Test Results (v3 — Patient-wise Split)
+---
+## 📊 Test Results (v3 — Patient-wise Split, 4 Epochs)
 
 *Reference: `*_v3.ipynb`*
 
@@ -146,7 +147,7 @@ Annotations: https://zenodo.org/records/6390798/files/embryo_dataset_annotations
 | VGG19 | **0.3303** | **0.6230** |
 | InceptionV3 | 0.4711 | 0.4310 |
 
-> ⚠️ Results using **patient-wise data splitting**, eliminating data leakage and providing a more realistic evaluation compared to earlier versions.
+> ⚠️ Results using **patient-wise data splitting (4 epochs)**, eliminating data leakage and providing a more realistic evaluation compared to earlier versions.
 ---
 
 ## ⚠️ Experimental Note
